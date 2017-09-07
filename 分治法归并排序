@@ -1,0 +1,76 @@
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <cctype>
+#define N 100
+using namespace std;
+
+void merge(int * a, int left, int mid,int right){
+	int i,j,k = 0;
+	int b[N] = {0};
+	i = left;
+	j = mid + 1;
+	while (i <= mid && j <= right)
+	{
+		if(a[i] < a[j]){
+			b[k++] = a[i++];
+		}else{
+			b[k++] = a[j++];
+		}
+	}
+	while(i <= mid)
+		b[k++] = a[i++];
+	while (j <= right)
+	{
+		b[k++] = a[j++];
+	}
+
+	for (i = 0; i < k; i++)
+	{
+		a[left++] = b[i];
+	}
+}
+
+int mergesort(int *a,int left, int right){
+	int i,j,mid;
+	i = left;
+	j = right;
+	if(j - i >= 1){
+		mid = (j + i) / 2;
+		mergesort(a,i,mid);
+		mergesort(a,mid + 1,j);
+		merge(a,i,mid,j);
+	}
+	return 0;
+}
+int main(){
+	/*
+	string str;//为什么也是
+	int a = 0;
+	cout << str << a << endl;
+	cin >> str;
+	cout << str << str.size() << endl;
+	cout << str[1] << endl;
+
+	ifstream in;
+	in.open("C:\\Users\\ge.lei\\Desktop\\Linux指令.txt");
+	if (in)
+	{
+		while(getline(in,str)){
+			cout << str << "{" << str.size() << "}" << endl;
+		}
+	}
+	*/
+	string str = "Hello World";
+//	for(char c : str){
+//		c = toupper(c);
+//	}
+	cout << str << endl;
+	int a[] = {1,5,2,9,6,3,4,7,10,8};
+	mergesort(a,0,sizeof(a)/sizeof(int) - 1);
+	for (int i = 0; i < 10; i++)
+	{
+		cout << a[i] << " ";
+	}
+	return 0;
+}
