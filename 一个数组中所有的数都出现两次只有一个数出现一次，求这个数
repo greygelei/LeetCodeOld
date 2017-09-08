@@ -1,0 +1,8 @@
+//任何数与本身异或都为0，与0异或都为自己
+int findAlone(int *a, int n){
+	int alone = 0;
+	for(int i = 0; i < n; i++){
+		alone = alone^a[i];
+	}
+	return alone;
+}
