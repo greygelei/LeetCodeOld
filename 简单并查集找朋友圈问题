@@ -3,6 +3,7 @@ using namespace std;
 const int M = 1e3 + 10 ;
 int n , m ;
 int folk[M] ;
+//并查集的精髓所在dsu函数
 int dsu (int u) { 
         return u == folk[u] ? u : folk[u] = dsu (folk[u]) ;
 }
@@ -19,6 +20,6 @@ int main () {
                         folk[v] = _u ;
                 }
         }
-        for (int i = 0 ; i < n ; i ++) dsu (i) ;
+        for (int i = 0 ; i < n ; i ++) dsu (i) ;//生成树，刚才是森林
         return 0 ;
 }
