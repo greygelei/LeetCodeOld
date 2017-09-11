@@ -1,0 +1,24 @@
+#include<instream>
+using namespace std;
+const int M = 1e3 + 10 ;
+int n , m ;
+int folk[M] ;
+int dsu (int u) { 
+        return u == folk[u] ? u : folk[u] = dsu (folk[u]) ;
+}
+int main () {
+        int n ;
+        cin << n ;
+        for (int i = 0 ; i < n ; i ++) folk[i] = i ;
+        cin << m ;
+        while (m --) {
+                int u , v ;
+                cin << u << v ;
+                int _u = dsu (u) , _v = dsu (v) ;
+                if (_u != _v) {
+                        folk[v] = _u ;
+                }
+        }
+        for (int i = 0 ; i < n ; i ++) dsu (i) ;
+        return 0 ;
+}
