@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int a[130];
+	    memset(a,0,sizeof(a));
+	    int max,i,j;
+	    max = i = j = 0;
+	    while (j < s.length())
+	    {
+	    	if(a[s[j]] == 1)
+	    	{
+		    	while (i < j)
+		    	{
+		    		if(s[i] != s[j])
+		    		{
+		    			a[s[i]] = 0;
+		    			i++;
+		    		}
+		    		else{
+			    		i++;
+		    			j++;
+			    		break;
+				    }
+	    		}
+		    }
+	    	else{
+	    		if(max < j - i + 1){
+	    			max = j - i + 1;
+	    		}
+	    		a[s[j]] = 1;
+	    		j++;
+	    	}
+	    }
+    	return max;
+    }
+};
