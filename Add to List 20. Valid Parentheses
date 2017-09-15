@@ -1,0 +1,45 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        if(s.length() == 0)
+            return 0;
+        if(s.length() % 2 != 0)
+            return false;
+        stack<char> sta;
+        for(int i = 0; i < s.length(); i++)
+        {
+            switch(s[i])
+            {
+                case ')':
+                    if(sta.empty())
+                        return false;    
+                    if(sta.top() == '(')
+                    {
+                        sta.pop();
+                    }
+                    break;
+                case ']':
+                    if(sta.empty())
+                        return false;
+                    if(sta.top() == '[')
+                    {
+                        sta.pop();
+                    }
+                    break;
+                case '}':
+                    if(sta.empty())
+                        return false;
+                    if(sta.top() == '{')
+                    {
+                        sta.pop();
+                    }
+                    break;
+                default:
+                    sta.push(s[i]);
+            }
+        }
+        if(sta.empty())
+            return true;
+        return false;
+    }
+};
