@@ -1,0 +1,24 @@
+class Solution {
+    public static int maxArea(int[] height){
+		int left = 0;
+		int right = height.length - 1;
+		int maxC = 0;
+		while(left < right){
+			/*if(maxC < ((height[left] > height[right] ? height[right] : height[left])*(right - left))){
+				maxC = ((height[left] > height[right] ? height[right] : height[left])*(right - left))
+			}*/
+			if(height[left] > height[right]){
+				if(maxC < height[right]*(right - left)){
+					maxC = height[right]*(right - left);
+				}
+				right--;
+			} else{
+				if(maxC < height[left]*(right - left)){
+					maxC = height[left]*(right - left);
+				}
+				left ++;
+			}
+		}
+		return maxC;
+	}
+}
